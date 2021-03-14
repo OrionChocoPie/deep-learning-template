@@ -37,7 +37,7 @@ class Moons(Dataset):
         return torch.from_numpy(self.X[idx]), torch.from_numpy(np.array(self.y[idx]))
 
 class HomeTaskDataLoader(BaseDataLoader):
-    def __init__(self, data_dir, batch_size, shuffle=True, validation_split=0.0, num_workers=1, 
+    def __init__(self, batch_size, shuffle=True, validation_split=0.0, num_workers=1, 
             training=True):
         self.dataset = Moons(5000, True, 0.2)
         super().__init__(self.dataset, batch_size, shuffle, validation_split, num_workers)
