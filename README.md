@@ -1,51 +1,22 @@
-# PyTorch PlayGround
-
-Основа для этого проекта взята с этого [репозитория](https://github.com/victoresque/pytorch-template "Github")
-
------
-
-Реализовать с помощью pytorch аналог https://playground.tensorflow.org/
-Фичи, которые нужно реализовать
-1) Генерация данных, датасет и даталоадер (можно добавить подгрузку своих csv)
-2) Класс генерирующий сеть по заданной архитектуре
-3) Класс обучающий сеть
-4) Сделать визаулизацию
-
------
-
-## Installation
-
-### Вариант 1: Docker
-
-Соберите и запустите контейнер
+# Deep Learning Template
+## Options to use Makefile
 ```bash
-sudo docker-compose up -d
-```
-Войдите в него
-```bash
-sudo docker exec -it deep-learning-template_main_1 bash
-```
+make  # stop, build, run
 
-### Вариант 2: Python Environment
+# do the same
+make stop
+make build
+make run
 
-Создайте виртуальную среду с необходимыми библиотеками:
+make  # by default all GPUs passed 
+make GPUS=all  # do the same
+make GPUS=none  # without GPUs
 
-```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
+make run GPUS=2  # pass the first two gpus
+make run GPUS='\"device=0,1\"'  # pass GPUs numbered 0 and 1
 
-## Train
-
-```bash
-python train.py -c config.json
-```
-
-## Evaluation
-
-После обучения у вас будет сохранена модель в папке `saved/models/HomeTask/{current_date}`. Этот путь надо будет указать ниже
-
-```bash
-python test.py --resume saved/models/HomeTask/{current_date}/model_best.pth
+make logs
+make exec  # runs a new bash terminal in a running container
+make exec COMMAND="bash"  # do the same 
+make stop
 ```

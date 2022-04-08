@@ -1,5 +1,7 @@
-FROM pytorch/pytorch
+FROM ghcr.io/osai-ai/dokai:22.03-pytorch
 
-COPY requirements.txt .
+ENV TORCH_HOME /workdir/data/.torch
 
-RUN pip install -r requirements.txt
+# Predict requirements
+COPY ./requirements.txt /requirements.txt
+RUN pip3 install --no-cache-dir -r /requirements.txt
